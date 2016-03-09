@@ -10,6 +10,10 @@ client = TwilioRestClient(account_sid, auth_token)
 
 
 # Make the call
-call = client.calls.create(to="+16508621107",  # Any phone number
-                           from_= "+16506035470", # Must be a valid Twilio number
-                           url="http://705be79e.ngrok.io/")
+def call():
+	call = client.calls.create(to="+16508621107",  from_= "+16506035470", url="http://705be79e.ngrok.io/")
+
+	for c in client.calls.list():
+		print ("From: " + c.from_formatted + " To: " + c.to_formatted)
+
+call()
