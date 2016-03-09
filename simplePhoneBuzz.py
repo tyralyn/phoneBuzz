@@ -3,6 +3,7 @@ from twilio.rest import TwilioRestClient
 import twilio.twiml # Download the library from twilio.com/docs/libraries
 #import dialingPhoneBuzz
 import credentials
+import re
  
 
 account_sid = credentials.sid
@@ -17,15 +18,12 @@ def start_here():
 
 #obtains input (phone number) from input box, redirects to function that makes call
 @app.route("/get-phone-number", methods=['GET', 'POST']) 
-def get_phone_number():
+def get_phone_number_and_call():
 	phone_num = request.form['number']
-	return redirect("/call")
-
-#sets up call, moves to
-@app.route("/call", methods=['GET', 'POST']) 
-def call():
+	digits=re.findall(r'\d+', phone_num)
+	phoneNum="+"+"".join(map(str,digits))
 	resp = twilio.twiml.Response()
-	call = client.calls.create(to="+16508621107",  from_= "+16506035470", url="http://705be79e.ngrok.io/"+"get-input")
+	call = client.calls.create(to=phoneNum,  from_= "+16506035470", url="http://705be79e.ngrok.io/"+"get-input")
 	return str(resp)
 
 #recieves call made by call function, prompts user for input
