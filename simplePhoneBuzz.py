@@ -25,14 +25,12 @@ def get_phone_number():
 @app.route("/call", methods=['GET', 'POST']) 
 def call():
 	resp = twilio.twiml.Response()
-	call = client.calls.create(to="+16508621107",  from_= "+16506035470", url="http://705be79e.ngrok.io/"+"hello-monkey")
-	for c in client.calls.list():
-		print ("From: " + c.from_formatted + " To: " + c.to_formatted)
+	call = client.calls.create(to="+16508621107",  from_= "+16506035470", url="http://705be79e.ngrok.io/"+"get-input")
 	return str(resp)
 
 #recieves call made by call function, prompts user for input
-@app.route("/hello-monkey", methods=['GET', 'POST'])
-def hello_monkey():
+@app.route("/get-input", methods=['GET', 'POST'])
+def get_input():
 	resp = twilio.twiml.Response()
 	with resp.gather(action="/handle-key") as inp:
 		inp.say("Please enter a number and end with #")
