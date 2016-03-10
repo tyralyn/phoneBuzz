@@ -3,9 +3,18 @@
     <title>Sample "Hello, World" Application</title>
   </head>
   <body>
-  	<form action="/get-phone-number" method="post">
-  		<input type="text" name="number"></input>
-  		<input type="submit" value="phone_number"></input>
-	</form>  
+    <form action="/get-phone-number-and-delay" method="post">
+      <input type="text" name="number"></input>
+      <input type="text" name="delay"></input>
+      <input type="submit" value="blbl enter phone number (american) and delay timer (in seconds)"></input>
+  </form>
+
+  </br>
+    {% if name %}
+      <h1>Hello {{ name }}!</h1>
+    {% else %}
+      <h1>Hello World!</h1>
+    {% endif %}
+
   </body>
 </html>
