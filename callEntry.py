@@ -20,6 +20,8 @@ class callEntry:
 		self.num=self.handlePhoneNumber(num)
 		#fizzbuzz value
 		self.fizzBuzz= ""
+		#validPhoneFlag
+		self.validNumberFlag=True
 
 	def setNumber(s):
 		self.number = s
@@ -41,7 +43,7 @@ class callEntry:
 		elif len(digitsString)==11:
 			return ("+"+digitsString)
 		else:
-			return ("invalid number: "+s)
+			return (digitsString)
 
 #helper function to determine whether delay value is valid
 	def handleDelayValue(self, s):

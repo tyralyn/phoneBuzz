@@ -11,7 +11,7 @@
       <input type="submit" value="Enter"></input>
   </form>
 
-  {% if invalidPhone == True %}
+  {% if lastCallInvalid == False %}
     <font color = "red"> Invalid phone number -- please enter a valid US phone number </font>
   {% endif %}
 

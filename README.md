@@ -20,3 +20,5 @@ part 2:
 
 part 4:
 	* in case of delay, does not check for invalid number before waiting
+	* handling of phone numbers -- put in hands of twilio rest exceptions
+	* add invalid phone flag to each callEntry item?
