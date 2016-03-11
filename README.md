@@ -1,33 +1,40 @@
-# phoneBuzz
+INTRODUCTION
 
-TODO:
+This is Tyralyn Tran's entry for Lendup's PhoneBuzz coding challenge. 
 
-part 1:
-	* comments
-	* make fizzbuzz voice stuff sound better?
+--------------------------------------------------------------------
 
-part 2:
-	* input check: check input to make sure it's a valid phone number with regex
-	* remove response in call function --
-	--* rename "hello-monkey" to something more descriptive
-	--* remove call printing
-	* remove return value --
-	* in hello-monkey, handle case of non-number input
-	* instructions for adding twilio authentication/id
-	* combine get_input and handle_key?
-	* do we need all different response objects?
+BUILD/RUN INFO
 
+* instructions provided are for a Windows 7 machine running Python 3.5.1. Adapted from here: https://www.twilio.com/docs/quickstart/python/devenvironment
+* requires virtualenv and pip to be preinstalled
 
-part 4:
-	* in case of delay, does not check for invalid number before waiting
-	* handling of phone numbers -- put in hands of twilio rest exceptions
-	* add invalid phone flag to each callEntry item?
+1. Set up virtual environment
 
+	virtualenv --no-site-packages .
 
-ALL:
-	* comments
-	* separate
-	* host
-	* clean up gets an puts
-	* fallback URL?
-	* SCHED ONE ARG BUG?
+2. Activate virtual environment
+
+	Scripts\activate.bat
+
+3. Install packages listed in req.txt
+
+	pip install -r req.txt
+
+4. To run, call the simplePhoneBuzz file
+
+	python simplePhoneBuzz.py
+
+In order to sub in different Twilio account credentials, open up crendentials.py. The from number is set to Twilio's approved test number. Edit the variables accordingly in the following manner: 
+
+sid="aaaaaaaaaaaa"
+authToken="bbbbbbbbbbb"
+
+callFrom="+15005550006"
+requestURL="http://8b4cd4ed.ngrok.io/"
+
+--------------------------------------------------------------------
+
+SERVER/HOSTING INFO
+
+Currently, the site is hosted on an ngrok tunnel to my personal machine. It is currently located at http://8b4cd4ed.ngrok.io/. 
