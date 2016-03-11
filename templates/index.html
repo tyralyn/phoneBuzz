@@ -1,20 +1,19 @@
 <html>
   <head>
-    <title>Sample "Hello, World" Application</title>
+    <title>Sample  Application</title>
   </head>
   <body>
     <form action="/get-phone-number-and-delay" method="post">
       <input type="text" name="number"></input>
       <input type="text" name="delay"></input>
-      <input type="submit" value="blbl enter phone number (american) and delay timer (in seconds)"></input>
+      <input type="submit" value="enter phone number (american) and delay timer (in seconds)"></input>
   </form>
 
-  </br>
-    {% if name %}
-      <h1>Hello {{ name }}!</h1>
-    {% else %}
-      <h1>Hello World!</h1>
-    {% endif %}
+    <ul id="l">
+    {% for item in l %}
+        <li>Call: {{ item.now }} {{ item.number }}</li>
+    {% endfor %}
+    </ul>
 
   </body>
 </html>
