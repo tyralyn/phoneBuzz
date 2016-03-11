@@ -17,9 +17,9 @@ BUILD/RUN INFO
 
 	Scripts\activate.bat
 
-3. Install packages listed in req.txt
+3. Install packages listed in requirements.txt
 
-	pip install -r req.txt
+	pip install -r requirements.txt
 
 4. To run, call the simplePhoneBuzz file
 
