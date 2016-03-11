@@ -45,7 +45,7 @@ class callEntry:
 		else:
 			return (digitsString)
 
-#helper function to determine whether delay value is valid
+	#helper function to determine whether delay value is valid: only takes integers
 	def handleDelayValue(self, s):
 		return (0 if not isInt(s) else int(s))
 		

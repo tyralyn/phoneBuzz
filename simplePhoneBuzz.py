@@ -6,7 +6,6 @@ import sched
 import uuid
 import time
 import callEntry
-#import helperFunctions
 import collections
 
 #taken from credentials.py file: sid and authtoken required to make calls
@@ -31,34 +30,35 @@ def lastCallInvalid():
 	except (StopIteration):
 		return True
 
+#helper function: creates callEntry object for the call, depending on whether it's a replay call or not
+#takes a default of none id call is not a replay, and the callID if the call is a replay
+#puts request in scheduler and runs
 def handle_call(replayingCall = None):
 	callId = str(uuid.uuid4())
 	if replayingCall==None:
 		num = request.form['number']
 		delay = request.form['delay']
+		url_ = request_url+"get-input/"+callId
 		li[callId]=(callEntry.callEntry(num, delay, replayingCall))
 	else:
 		num=li[replayingCall].num
 		delay=li[replayingCall].delay
 		li[callId]=(callEntry.callEntry(num, delay, replayingCall))
 		li[callId].setFizzBuzz(li[replayingCall].fizzBuzz)
-	s.enter(li[callId].delay, 1, make_call, (1, callId))
+		url_=request_url+"replay-call/"+callId
+	s.enter(li[callId].delay, 1, make_call, (url_, callId))
 	s.run()
 
-def make_call(i, callId):
+#helper function: given destination URL and the id of the call, creates the call
+def make_call(url_, callId):
 	to_ = li[callId].num
 	from_ = account_phone
-	get_input_url_ = request_url+"get-input/"+callId
-	replay_url_=request_url+"replay-call/"+callId
 	try:
-		if li[callId].replay==None:
-			call = client.calls.create(to_,  from_, get_input_url_)
-		else:
-			call = client.calls.create(to_,  from_, replay_url_)
+		call = client.calls.create(to_,  from_, url_)
 	except (twilio.rest.exceptions.TwilioRestException):
 		li[callId].validNumberFlag = False
 
-#takes in response item and performs fizzbuzz to listener
+#takes in response item and performs fizzbuzz to listener, regardless of whether call is replay or not
 def fizzBuzz(callId, resp):
 	n = li[callId].fizzBuzz
 	resp.say("You entered " + n+". ")
@@ -85,7 +85,7 @@ def start_here():
 @app.route("/get-phonecall", methods=['GET', 'POST'])
 def get_phonecall():
 	callId=request.form['callId']
-	handle_call(callId)
+	handle_call(callId) #handles replay call with id of callId
 	return redirect('/')
 
 #performs actions if a new call (non-replay) is initiated
