@@ -25,6 +25,11 @@ BUILD/RUN INFO
 
 	python simplePhoneBuzz.py
 
+
+--------------------------------------------------------------------
+
+SERVER/HOSTING/CREDENTIALS INFO
+
 In order to sub in different Twilio account credentials, open up crendentials.py. The from number is set to Twilio's approved test number. Edit the variables accordingly in the following manner: 
 
 sid="aaaaaaaaaaaa"
@@ -33,8 +38,12 @@ authToken="bbbbbbbbbbb"
 callFrom="+15005550006"
 requestURL="http://8b4cd4ed.ngrok.io/"
 
+Currently, the site is hosted on an ngrok tunnel to my personal machine. It is currently located at http://8b4cd4ed.ngrok.io/. Please let me know if the tunnel has collapsed (email: tyralyntran@gmail.com) and I'll resolve the issue. 
+
 --------------------------------------------------------------------
 
-SERVER/HOSTING INFO
+ERRORS/FUTURE WORK
 
-Currently, the site is hosted on an ngrok tunnel to my personal machine. It is currently located at http://8b4cd4ed.ngrok.io/. 
+* Delay makes the website hang. In the future, implement multithreading to manage this issue so that a user can queue many calls in the scheduler
+
+* Handle phone input of *: the user inputting a star results in error and hangup. Gather method doesn't SEEM to support this, according to the official Twilio pages -- I will look into this. 
