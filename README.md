@@ -18,3 +18,5 @@ part 2:
 	* do we need all different response objects?
 
 
+part 4:
+	* in case of delay, does not check for invalid number before waiting

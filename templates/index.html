@@ -4,14 +4,22 @@
   </head>
   <body>
     <form action="/get-phone-number-and-delay" method="post">
-      <input type="text" name="number"></input>
-      <input type="text" name="delay"></input>
-      <input type="submit" value="enter phone number (american) and delay timer (in seconds)"></input>
+      Phone Number: <input type="text" name="number"></input>
+      </br>
+      Delay: <input type="text" name="delay"></input>
+      </br>
+      <input type="submit" value="Enter"></input>
   </form>
+
+  {% if invalidPhone == True %}
+    <font color = "red"> Invalid phone number -- please enter a valid US phone number </font>
+  {% endif %}
 
     <ul id="l">
     {% for item in l %}
-        <li>Call: {{ item.now }} {{ item.number }}</li>
+        <li>
+        Call {{ item }} : {{ l[item].now }} {{ l[item].num }} {{ l[item].fizzBuzz }}
+        </li>
     {% endfor %}
     </ul>
 
