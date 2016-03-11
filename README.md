@@ -22,3 +22,12 @@ part 4:
 	* in case of delay, does not check for invalid number before waiting
 	* handling of phone numbers -- put in hands of twilio rest exceptions
 	* add invalid phone flag to each callEntry item?
+
+
+ALL:
+	* comments
+	* separate
+	* host
+	* clean up gets an puts
+	* fallback URL?
+	* SCHED ONE ARG BUG?

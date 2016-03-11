@@ -15,13 +15,41 @@
     <font color = "red"> Invalid phone number -- please enter a valid US phone number </font>
   {% endif %}
 
-    <ul id="l">
+    <table id="l" border = "1">
+      <tr>
+        <td><b> Date of call </b></td>
+        <td><b> Time of call </b></td>
+        <td><b> Number Called </b></td>
+        <td><b> Value Entered </b></td>
+        <td><b> Delay </b></td>
+        <td><b> Replay? </b></td>
+        <td><b> Replay </b></td>
+      </tr>
     {% for item in l %}
-        <li>
-        Call {{ item }} : {{ l[item].now }} {{ l[item].num }} {{ l[item].fizzBuzz }}
-        </li>
+      <tr>
+        <td> {{ l[item].date }} </td>
+        <td> {{ l[item].time }} </td>
+        <td> {{ l[item].num }} </td>
+        <td> {{ l[item].fizzBuzz }} </td>
+        <td> {{ l[item].delay }} </td>
+        <td> 
+        {% if l[item].replay == None %}
+          No
+        {% else %}
+          Yes
+        {% endif %}
+        </td>
+        <td> 
+          {% if l[item].validNumberFlag == True %}
+          <form action = "/get-phonecall" method="post">
+            <input type="hidden" name="callId" value = "{{ item }}"></input>
+            <input type="submit" value = "Replay Call"></input>
+          </form>
+          {% endif %}
+        </td>
+      </tr>
     {% endfor %}
-    </ul>
+    </table>
 
   </body>
 </html>

@@ -10,30 +10,30 @@ def isInt(s):
         return False
 
 class callEntry:
-	def __init__(self, num, delay=None):
+	def __init__(self, num, delay, replay = None):
 		#time
-		self.now = datetime.now()
+		self.date = datetime.now().date()
+		self.time = datetime.now().time()
 		#delay
 		self.delay = "" if delay == None else self.handleDelayValue(delay)
 		#number
 		self.rawNumString = num
 		self.num=self.handlePhoneNumber(num)
 		#fizzbuzz value
-		self.fizzBuzz= ""
+		self.fizzBuzz= "none"
 		#validPhoneFlag
 		self.validNumberFlag=True
+		#is this a replay of a previous call?
+		self.replay = replay
 
-	def setNumber(s):
+	def setNumber(self, s):
 		self.number = s
 
-	def setDelay(s):
+	def setDelay(self, s):
 		self.delay = s
 
-	def setFizzBuzz(s):
+	def setFizzBuzz(self, s):
 		self.fizzBuzz=s
-
-	def printCallEntry(self):
-		return ('{:%Y-%m-%d %H:%M:%S}'.format(self.now)+" "+str(num))
 
 	def handlePhoneNumber(self, s):
 		digits=re.findall(r'\d+', s)
